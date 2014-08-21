@@ -7,7 +7,7 @@ For now Kit consists of:
 
 * exif geoData from images
 * flickr (point-based)
-* 4sqr (iterative all-scraping process)
+* 4sqr (iterative all-scraping process) (updated)
 * Moves app geoData (updating)
 
 ###TODO###
@@ -16,13 +16,4 @@ For now Kit consists of:
 * extended Moves functionality
 * instagram support
 * osm support
-* anything other??
-
-###Some Images###
-![enter image description here][1]
-
-![enter image description here][2]
-
-
-  [1]: https://www.dropbox.com/s/07hoy2ge0uzhpnp/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%202014-08-15%2011.29.33.png
-  [2]: https://www.dropbox.com/s/kak9vnl6yp8j0ey/%D0%A1%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%202014-08-15%2011.29.59.png
+* anything else??
