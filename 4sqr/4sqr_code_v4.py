@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 #  два режима (сервер и локал) с подстановкой путей
-mode = 'local' #'server'
+# mode = 'local'
+mode = 'server'
 
 pathes = {'local':{'modulePath':"/Users/casy/Dropbox (RN&IA'N)/Projects/Kats/Afisha/4sqr_scrape/code/misc/",
 					'resultPath':"/Users/casy/Dropbox (RN&IA'N)/Projects/Kats/Afisha/4sqr_scrape/data/"},
