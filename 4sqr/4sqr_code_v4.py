@@ -7,7 +7,7 @@ mode = 'server'
 
 pathes = {'local':{'modulePath':"/Users/casy/Dropbox (RN&IA'N)/Projects/Kats/Afisha/4sqr_scrape/code/misc/",
 					'resultPath':"/Users/casy/Dropbox (RN&IA'N)/Projects/Kats/Afisha/4sqr_scrape/data/"},
-		  'server':{'modulePath':"/root/4sqr_scraper/data/misc",
+		  'server':{'modulePath':"/root/4sqr_scraper/code/misc",
 					'resultPath':"/root/4sqr_scraper/data/"}}
 
 modulePath, resultPath = pathes[mode]['modulePath'],pathes[mode]['resultPath']
@@ -67,7 +67,11 @@ with open(resultPath, 'w') as csvfile:
 		for tile in tileArray:
 			time.sleep(sleepTime)
 			
-			ask = frsqrRequests.VenueSearch(tile['sw'],tile['ne'],CLIENT_ID,CLIENT_SECRET)
+			try:
+				ask = frsqrRequests.VenueSearch(tile['sw'],tile['ne'],CLIENT_ID,CLIENT_SECRET)
+			except:
+				newTileArray.append(tile)
+				
 			p = []
 			for venue in ask:
 				if checkVsBound(tile['sw'],tile['ne'],venue['location']['lat'], venue['location']['lng']):
@@ -90,5 +94,6 @@ with open(resultPath, 'w') as csvfile:
 					full_venue = frsqrRequests.getCompleteDetails(ID,CLIENT_ID,CLIENT_SECRET)
 					v = parseVenue.parseVenue(full_venue, catArrays, tile['name'], place)
 					writer.writerow([v[key] for key in headers])
+					time.sleep(sleepTime)
 					# print '|'.join([str(v[key]) for key in headers])
 print 'scraping %s done!' % (place)

@@ -46,7 +46,7 @@ def getCompleteDetails(id, CLIENT_ID,CLIENT_SECRET):
 		return json.loads(j.text)["response"]["venue"]
 	else:
 		print j.text
-	time.sleep(sleepTime)
+	
 
 
 def VenueSearch(sw,ne,CLIENT_ID,CLIENT_SECRET):
