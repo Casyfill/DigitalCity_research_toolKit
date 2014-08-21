@@ -27,9 +27,9 @@ import parseVenue, frsqrRequests
 
 
 sleepTime = 10
-place = 'Norman_experimant_b'
-swBound = '35.176054, -97.453061'
-neBound = '35.206075, -97.419415'
+place = 'Norman'
+swBound = '35.160513, -97.548805'
+neBound = '35.304094, -97.353111'
 resultPath+=(place + '.csv')
 
 headers=['genCategory',   # csv headers (params)
