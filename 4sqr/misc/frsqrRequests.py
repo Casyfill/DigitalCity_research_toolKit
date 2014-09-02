@@ -46,7 +46,7 @@ def getCompleteDetails(id, CLIENT_ID,CLIENT_SECRET):
 		return json.loads(j.text)["response"]["venue"]
 	else:
 		print j.text
-	
+	time.sleep(sleepTime)
 
 
 def VenueSearch(sw,ne,CLIENT_ID,CLIENT_SECRET):
@@ -61,10 +61,6 @@ def VenueSearch(sw,ne,CLIENT_ID,CLIENT_SECRET):
 				'limit':50
 				}
 
-	r = requests.get(baseUrl, params=payload)
-	
-	if json.loads(r.text)['meta']["code"] == 200:
-		return json.loads(r.text)["response"]["venues"]
-	else:
-		print 'error:',r.text
-		return None
+	r = json.loads(requests.get(baseUrl, params=payload).text)
+	return r
+		
