@@ -34,7 +34,7 @@ def generateCatArray(CLIENT_SECRET, CLIENT_ID):
 
 
 
-def getCompleteDetails(id, CLIENT_ID,CLIENT_SECRET):
+def getCompleteDetails(id, CLIENT_ID,CLIENT_SECRET, sleepTime):
 	global requests, json
 	pl = {'client_id':CLIENT_ID,
 			'client_secret':CLIENT_SECRET,
@@ -61,6 +61,6 @@ def VenueSearch(sw,ne,CLIENT_ID,CLIENT_SECRET):
 				'limit':50
 				}
 
-	r = json.loads(requests.get(baseUrl, params=payload).text)
-	return r
+	return json.loads(requests.get(baseUrl, params=payload).text)
+	
 		
