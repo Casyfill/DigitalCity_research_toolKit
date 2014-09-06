@@ -26,7 +26,7 @@ import parseVenue, frsqrRequests
 
 
 sleepTime = 20
-place = 'Oklahoma2'
+place = 'Oklahoma3'
 swBound = '33.329980, -103.567494'
 neBound = '37.384914, -94.111012'
 resultPath+=(place + '.csv')
@@ -44,7 +44,13 @@ headers=['genCategory',   # csv headers (params)
 				'tileID',
 				'ID',
 				'place',
-				'time']
+				'time',
+				'verified',
+	 			'price',
+	 			'rating',
+	 			'tags',
+	 			'photoCount',
+	 			'description']
 
 
 with open(resultPath, 'w') as csvfile:
@@ -58,14 +64,14 @@ with open(resultPath, 'w') as csvfile:
 	spreads = 1 # количество необходимых запростов
 	read = 0 # количество результативных запросов
 
-	totalVenues = 0
+	totalVenues = 0 # счетчик собранных мест
 
 	while len(newTileArray)>0:
 		
 		tileArray = newTileArray # рабочий список
 		newTileArray = [] #обнуляем список для следующей итерации
 		level+=1
-		print 'level %d reached: %d requests ' %(level, len(tileArray))
+		print 'level %d reached: %d requests, %d venues so far!' %(level, len(tileArray), totalVenues)
 
 		for tile in tileArray:
 			
@@ -73,13 +79,15 @@ with open(resultPath, 'w') as csvfile:
 				ask = frsqrRequests.VenueSearch(tile['sw'],tile['ne'],CLIENT_ID,CLIENT_SECRET)
 
 				
-				if ask['meta']['code']!=200:
+				# проверка статусов
+				if ask['meta']['code']!=200: #если ответ не нормальный
 
 					if ask['meta']['errorType']=='geocode_too_big':
 						newTileArray+=matrix(tile['sw'],tile['ne'],tile['name']) # добавляем детализированную матрицу к листу следующего уровня
 						print tile['name'], ':', read, '/',spreads, ' too big, detailed!'
 						spreads+=3
 					
+					# ПОЧЕМУ-ТО ДО ЭТОГО МЕСТА НЕ ДОХОДИТ :-(((
 					else:
 						print tile['name'], ':', ask['meta']['errorType']
 						newTileArray.append(tile)
@@ -118,5 +126,5 @@ with open(resultPath, 'w') as csvfile:
 				time.sleep(sleepTime*5)
 
 
-	print 'scraping %s done!, venues: %d' % (place)
+	print 'scraping %s done!, venues: %d' % (place, totalVenues)
 
